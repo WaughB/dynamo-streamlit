@@ -1,0 +1,28 @@
+version: '3.8'  # Specify the Compose file version
+
+services:
+  dynamodb-local:
+    image: amazon/dynamodb-local
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"  # Expose port 8000 for DynamoDB Local
+    volumes:
+      - dynamodb-data:/home/dynamodblocal/data
+
+  streamlit-app:
+    build:
+      context: .  # Build the image from the current directory
+      dockerfile: Dockerfile  # Use the Dockerfile in the current directory
+    container_name: streamlit-app
+    ports:
+      - "8501:8501"  # Expose port 8501 for the Streamlit app
+    environment:
+      AWS_ACCESS_KEY_ID: "223344"  # Dummy credentials for local development
+      AWS_SECRET_ACCESS_KEY: "dummy-secret-key"
+      AWS_DEFAULT_REGION: "us-west-2"
+      DYNAMODB_ENDPOINT_URL: "http://localhost:8000"  # Connect to DynamoDB Local
+    depends_on:
+      - dynamodb-local
+
+volumes:
+  dynamodb-data:

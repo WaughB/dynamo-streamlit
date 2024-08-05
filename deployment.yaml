@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit-dynamodb-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streamlit-dynamodb-app
+  template:
+    metadata:
+      labels:
+        run: streamlit-dynamodb-app
+        app: streamlit-dynamodb-app
+    spec:
+      containers:
+      - name: streamlit-dynamodb-app
+        image: streamlit-dynamodb-app:latest  # Ensure this matches the built image name
+        imagePullPolicy: Never  # This is only for local development
+        ports:
+        - containerPort: 8501
