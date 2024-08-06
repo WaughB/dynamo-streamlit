@@ -77,6 +77,12 @@ Before you begin, ensure you have the following installed on your system:
     kubectl apply -f service.yaml
     ```
 
+6. **Port forwarding**
+
+    ```bash
+    kubectl port-forward --address 0.0.0.0 -n default service/streamlit-dynamodb-app 30001:8501
+    ```    
+
 ### Alternate Setup: Docker-Compose
 
 1. **Build the Docker compose project**
@@ -144,6 +150,7 @@ Before you begin, ensure you have the following installed on your system:
     ```bash
     minikube delete
     ```
+
 ### Alternative Shutdown: Docker-Compose
 
 1. **How to shutdown Docker Compose**
@@ -181,3 +188,7 @@ Expected output: HTML content indicating the Streamlit application is running.
 
 * Open the Streamlit application in your web browser.
 * Verify you can view and add products through the application's interface.
+
+## Troubleshooting
+
+I have lots of difficulties updating minikube to the latest version. First stop the pods from running. Then I ended up using `minikube image rm streamlit-dynamodb-app` to fully remove the image. Then re-add the image `minikube image load streamlit-dynamodb-app:latest`. You can verify this by checking `minikube image ls --format table ` before and after and confirming the ID in Docker Desktop. 
