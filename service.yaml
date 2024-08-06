@@ -8,5 +8,4 @@ spec:
     app: streamlit-dynamodb-app
   ports:
   - port: 8501
-    targetPort: 8501
     nodePort: 30001  # This allows you to access the service on this specific port

@@ -14,10 +14,10 @@ logger = logging.getLogger(__name__)
 try:
     dynamodb = boto3.resource(
         "dynamodb",
-        endpoint_url="http://localhost:8000",  # URL for the local DynamoDB service
+        endpoint_url="http://dynamodb-local:8000",  # URL for the local DynamoDB service
         region_name="us-west-2",  # Specify any region, required by boto3 but ignored by local DynamoDB
         aws_access_key_id="223344",  # Dummy values
-        aws_secret_access_key="dummy-secret-key",
+        aws_secret_access_key="dum223344my-secret-key",
     )
     logger.info("Connected to DynamoDB successfully.")
 except EndpointConnectionError as e:

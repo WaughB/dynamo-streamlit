@@ -16,6 +16,6 @@ spec:
       containers:
       - name: streamlit-dynamodb-app
         image: streamlit-dynamodb-app:latest  # Ensure this matches the built image name
-        imagePullPolicy: Never  # This is only for local development
+        imagePullPolicy: Never  # Change to Always for production
         ports:
         - containerPort: 8501
